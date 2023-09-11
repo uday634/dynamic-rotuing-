@@ -7,8 +7,16 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon app.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uday634/dynamic-rotuing-.git"
+  },
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/uday634/dynamic-rotuing-/issues"
+  },
+  "homepage": "https://github.com/uday634/dynamic-rotuing-#readme",
   "dependencies": {
     "body-parser": "^1.20.2",
     "ejs": "^3.1.9",

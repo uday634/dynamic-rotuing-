@@ -1,4 +1,5 @@
 const Product = require('../models/product');
+const db = require('../util/database');
 
 exports.getAddProduct = (req, res, next) => {
   res.render('admin/edit-product', {
@@ -50,22 +51,32 @@ exports.postEditProduct = (req, res, next) => {
     updatedDesc,
     updatedPrice
   );
-  updatedProduct.save();
+  updatedProduct.save()
+    .then(()=>{
+      res.redirect('/')
+    })
+    .catch(err=>console.error(err))
   res.redirect('/admin/products');
 };
 
 exports.getProducts = (req, res, next) => {
-  Product.fetchAll(products => {
+  Product.fetchAll()
+  .then(([products]) => {
     res.render('admin/products', {
       prods: products,
       pageTitle: 'Admin Products',
       path: '/admin/products'
     });
-  });
+  })
+  .catch(err=>console.error(err))
 };
 
 exports.postDeleteProduct = (req, res, next) => {
   const prodId = req.body.productId;
-  Product.deleteById(prodId);
-  res.redirect('/admin/products');
+  Product.deleteById(prodId)
+  .then(([products])=>{
+    res.redirect('/admin/products')
+  })
+  .catch(err=>console.error(err))
+  
 };
